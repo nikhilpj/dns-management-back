@@ -6,7 +6,7 @@ const connectDb = require('./config/connect')
 const app = express()
 connectDb
 const corsOptions={
-    origin:'http://localhost:3000',
+    origin:'https://dns-management-front.onrender.com',
     methods:['post','options']
 }
 app.use(cors(corsOptions))
