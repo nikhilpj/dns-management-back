@@ -5,11 +5,27 @@ const connectDb = require('./config/connect')
 
 const app = express()
 connectDb
-const corsOptions={
-    origin:'https://dns-management-front.onrender.com',
-    methods:['post','options']
-}
-app.use(cors(corsOptions))
+const allowedOrigins = ['https://dns-management-front.onrender.com']
+
+app.use(cors({
+    origin:function (origin,callback)
+     {
+        
+         if(allowedOrigins.indexOf(origin) !== -1)
+         {
+             callback(null,true)
+         }
+         else
+         {
+             callback(new Error('Not allowed by  cors'))
+         }
+     },
+     
+     methods: ['GET', 'POST','OPTIONS'],
+     
+    
+  })) 
+
 app.use(express.json({limit:'5mb'}))
 app.use('/user',user)
 
