@@ -4,7 +4,7 @@ const cors = require('cors')
 const connectDb = require('./config/connect')
 
 const app = express()
-connectDb
+connectDb()
 const allowedOrigins = ['https://dns-management-front.onrender.com']
 
 app.use(cors({
