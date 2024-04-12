@@ -14,4 +14,9 @@ router.post('/add',verifyToken,userController.add)
 router.post('/delete',verifyToken,userController.delete)
 
 router.post('/edit',verifyToken,userController.edit)
+
+router.post('/addhostingzone',verifyToken,userController.hostingZone)
+
+router.post('/viewhostingzone',verifyToken,userController.view)
+
 module.exports = router
