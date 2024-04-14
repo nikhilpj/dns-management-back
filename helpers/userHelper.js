@@ -222,19 +222,19 @@ module.exports = {
 
 
   viewHostingZone:(info)=>{
-    const {hostingZoneId} = info
+    const {hostingZonename} = info
     return new Promise((resolve,reject)=>{
-        var params = {
-            Id: hostingZoneId /* required */
-          };
-          route53.getHostedZone(params, function(err, data) {
-            if (err) console.log(err, err.stack); // an error occurred
-            else  
-            {
-                console.log(data); 
-                resolve(data)
-            }             // successful response
-          });
+      var params = {
+        DNSName: hostingZonename,
+        
+      };
+      route53.listHostedZonesByName(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else   {
+          console.log(data);
+          resolve(data)
+        }             // successful response
+      });
     })
   }
 };

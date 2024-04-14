@@ -86,7 +86,7 @@ module.exports = {
     const result = await userHelper.viewHostingZone(req.body)
     if(result)
     {
-      return res.status(200).json({data:result,message:'details of hosting zone sent'})
+      return res.status(200).json({data:result,message:'details of hosting zones sent'})
     }
     else{
       return res.status(500).json({message:'internal server error'})
