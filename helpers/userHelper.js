@@ -79,7 +79,7 @@ module.exports = {
   addRecords: (data) => {
     console.log("data of records to be created", data);
     return new Promise((resolve, reject) => {
-      const { name, recordType, value, ttl } = data;
+      const {id, name, recordType, value, ttl } = data;
       var params = {
         ChangeBatch: {
           Changes: [
@@ -99,7 +99,7 @@ module.exports = {
           ],
           Comment: "Web server for example.com",
         },
-        HostedZoneId: process.env.HOSTED_ZONE_ID,
+        HostedZoneId: id,
       };
       route53.changeResourceRecordSets(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
@@ -114,7 +114,7 @@ module.exports = {
   deleteRecord: (data) => {
     console.log("data of records to be created", data);
     return new Promise((resolve, reject) => {
-      const { name, recordType, value, ttl } = data;
+      const { id,name, recordType, value, ttl } = data;
       console.log();
       var params = {
         ChangeBatch: {
@@ -133,7 +133,7 @@ module.exports = {
           ],
           Comment: "Web server for example.com",
         },
-        HostedZoneId: process.env.HOSTED_ZONE_ID,
+        HostedZoneId: id,
       };
       route53.changeResourceRecordSets(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
@@ -147,7 +147,7 @@ module.exports = {
 
   editRecord: (data) => {
     return new Promise((resolve, reject) => {
-      const { name, recordType, value, ttl } = data;
+      const {id, name, recordType, value, ttl } = data;
 
       console.log("value", value);
       var params = {
@@ -167,7 +167,7 @@ module.exports = {
           ],
           Comment: "Web server for example.com",
         },
-        HostedZoneId: process.env.HOSTED_ZONE_ID,
+        HostedZoneId: id,
       };
       route53.changeResourceRecordSets(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
